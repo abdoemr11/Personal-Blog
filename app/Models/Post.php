@@ -19,5 +19,10 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function author() //by default laravel expect the forign key to be author_id which is not true
+    {
+        //we have to explicity pass it
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
 
