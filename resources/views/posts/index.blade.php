@@ -1,10 +1,11 @@
 <x-layout>
 
     <x-slot name="content">
-        @include("_post_header")
+        @include("posts._header")
         <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
 
-        <x-featured-post-card :post="$posts->first()" />
+        @if($posts->count())
+            <x-featured-post-card :post="$posts->first()" />
 
             <div class="lg:grid lg:grid-cols-2">
                 @foreach($posts->slice(1)->take(2) as $post)
@@ -16,6 +17,10 @@
                     <x-normal-post-card :post="$post"/>
                 @endforeach
             </div>
+
+        @else
+            <p class="text-center">No posts yet. Please check back later.</p>
+        @endif
         </main>
 
 {{--            <article>--}}

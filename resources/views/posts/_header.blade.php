@@ -17,20 +17,7 @@
 {{--            add bootstrap dropdown--}}
             <div class="container">
                 <div class="row">
-                    <div class="col-sm dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ request()->routeIs('home') ? 'Categories' : ucwords($current_category->name)}}
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                @foreach($categories as $cat)
-                                    <a class="dropdown-item {{request()->is('*' . $cat->slug) ? 'active': ''}}"
-{{--                                    <a class="dropdown-item"--}}
-                                       href="/categories/{{$cat->slug}}">
-                                        {{$cat->name}}
-                                    </a>
-                                @endforeach
-                            </div>
-                    </div>
+                    <x-category-dropdown/>
                     <div class="col-sm">
                         One of three columns
                     </div>
@@ -38,8 +25,13 @@
                         <!-- Search -->
                         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 py-2 col-sm">
                             <form method="GET" action="#">
+                                @if(request('category'))
+                                <input type="hidden" name="category" value="{{request('category')}}">
+                                @endif
                                 <input type="text" name="search" placeholder="Find something"
-                                       class="bg-transparent placeholder-black font-semibold text-sm">
+                                       class="bg-transparent placeholder-black font-semibold text-sm"
+                                       value = "{{request('search')}}"
+                                >
                             </form>
                         </div>
                     </div>
