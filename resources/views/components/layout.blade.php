@@ -2,11 +2,15 @@
     <!doctype html>
 
 <title>Laravel From Scratch Blog</title>
-<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+{{--<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">--}}
+{{--<script src="https://cdn.tailwindcss.com"></script>--}}
+
 <link rel="preconnect" href="https://fonts.gstatic.com">
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<body style="font-family: Open Sans, sans-serif">
+<body style="npm font-family: Open Sans, sans-serif">
 <section class="px-6 py-8">
     <nav class="md:flex md:justify-between md:items-center">
         <div>
@@ -53,7 +57,20 @@
         </div>
     </div>
 </footer>
+
 </section>
+@if(session()->has('success'))
+
+    <div class = "bg-blue-500 border bottom-0 fixed p-2 right-0 rounded-xl text-white fixed "
+         x-data = "{show: true}"
+         x-show="show"
+         x-init = "setTimeout( ()=>show = false, 4000)"
+    >
+        <p>
+            {{session('success')}}
+        </p>
+    </div>
+@endif
 {{--Bootstrap--}}
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
