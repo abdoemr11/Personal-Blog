@@ -23,7 +23,8 @@ class RegisterController extends Controller
             'email' => 'required|min:5|max:255|unique:users,email',
             'password' =>['required', $pass_rule],
             ]);
-        User::create($validated);
+        $user = User::create($validated);
+        auth()->login($user);
         return redirect('/')->with(['success' => 'Congratulation']);
     }
 }

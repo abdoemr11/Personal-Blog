@@ -4,9 +4,8 @@
 <title>Laravel From Scratch Blog</title>
 {{--<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">--}}
 {{--<script src="https://cdn.tailwindcss.com"></script>--}}
-
+<script src="{{ asset('js/app.js') }}" defer></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -20,7 +19,21 @@
         </div>
 
         <div class="mt-8 md:mt-0">
-            <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+            @guest
+            <a href="/register" class="text-xs font-bold uppercase text-decoration-none">Register</a>
+
+            <a href="/login" class="text-xs font-bold uppercase text-decoration-none">login</a>
+
+            @endguest
+
+            @auth
+                    <span  class="text-xs font-bold uppercase">Welcome {{auth()->user()->name}}</span>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button  class="text-xs font-bold uppercase" type="submit">logout</button>
+
+                    </form>
+            @endauth
 
             <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                 Subscribe for Updates
