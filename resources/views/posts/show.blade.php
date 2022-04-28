@@ -3,8 +3,8 @@
     <x-slot name="content">
 
 
-            <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
-                <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
+            <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6 ">
+                <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10 ">
                     <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
                         <img src="/images/illustration-1.png" alt="" class="rounded-xl">
 
@@ -53,8 +53,23 @@
                         <div class="space-y-4 lg:text-lg leading-loose"></div>
                         {!! $post->body !!}
                     </div>
+                    <section class="col-start-5 col-span-8 mt-4 ">
+
+                        <h3>Share with us your thought!</h3>
+                        <form action="/posts"></form>
+                        @php
+                            $comments = App\Models\Comment::where('post_id', $post->id)->get();
+
+                        @endphp
+                        @foreach($comments as $comment)
+                        <x-comment :comment="$comment"/>
+
+                        @endforeach
+                    </section>
+
                 </article>
             </main>
+
         </section>
     </x-slot>
 

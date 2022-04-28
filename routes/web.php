@@ -29,3 +29,6 @@ Route::post('login', [\App\Http\Controllers\SessionController::class, 'store'])
     ->middleware('guest');
 Route::post('logout', [\App\Http\Controllers\SessionController::class, 'destroy'])
     ->middleware('auth');
+
+//route for comment
+Route::post('comment-vote-{type}', [\App\Http\Controllers\CommentController::class, 'vote']);
